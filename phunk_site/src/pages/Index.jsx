@@ -62,10 +62,10 @@ function Index() {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="flex flex-row items-center justify-center gap-6">
+    <div className="flex flex-col items-center justify-center h-auto lg:h-screen">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6">
         <div
-          className="w-2/5 flex flex-col gap-3 p-6"
+          className=" w-full lg:w-2/5 flex flex-col gap-3 p-4 lg:p-6"
           onWheel={handleScroll} 
         >
           <motion.div
@@ -73,13 +73,13 @@ function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
           >
-            <p className="text-[3.5rem] font-[500] text-start whitespace-nowrap">
+            <p className="text-xl lg:text-[3.5rem] font-[500] text-start  whitespace-nowrap">
               <span className="font-turnkey">Dive into the</span>
               <span className="font-turnkey ml-5 bg-gradient-to-r from-[#00e5d1] to-[#2577f9] text-transparent bg-clip-text">
                 work.
               </span>
             </p>
-            <p className="text-sm text-gray-500 mb-16">
+            <p className="text-sm text-gray-500 mb-16 mt-6">
               As creatives ourselves, we know that what you really want to see is
               the work we’ve actually put live. Here’s a showcase of some of our
               recent projects, across a range of sectors.
