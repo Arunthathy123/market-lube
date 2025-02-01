@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Button from "../components/Button";
 
 function Index() {
-  // Array of image paths (you can fetch these dynamically)
   const images = [
     "/src/assets/img1.png",
     "/src/assets/img4.png",
@@ -40,31 +39,24 @@ function Index() {
     },
   ];
 
-  // State to control the index of the displayed image
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // To track the last scroll time and prevent rapid state changes
   const [isScrolling, setIsScrolling] = useState(false);
 
   const handleScroll = useCallback(
     (e) => {
-      // Prevent the scroll action if it's still in progress
       if (isScrolling) return;
 
-      // Debounce the scroll event
       setIsScrolling(true);
 
-      // Scroll down: show next image and detail section
       if (e.deltaY > 0 && currentIndex < images.length - 1) {
         setCurrentIndex((prevIndex) => prevIndex + 1);
       }
-      // Scroll up: show previous image and detail section
       if (e.deltaY < 0 && currentIndex > 0) {
         setCurrentIndex((prevIndex) => prevIndex - 1);
       }
 
-      // Allow scrolling again after a short delay (smooth transition time)
-      setTimeout(() => setIsScrolling(false), 1000); // Adjust timeout to match your transition duration
+      setTimeout(() => setIsScrolling(false), 1000); 
     },
     [isScrolling, currentIndex, images.length]
   );
@@ -72,10 +64,9 @@ function Index() {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex flex-row items-center justify-center gap-6">
-        {/* Image container with scrolling effect */}
         <div
           className="w-2/5 flex flex-col gap-3 p-6"
-          onWheel={handleScroll} // Add onWheel event to handle scroll
+          onWheel={handleScroll} 
         >
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -88,24 +79,23 @@ function Index() {
                 work.
               </span>
             </p>
-            <p className="text-sm text-gray-400 mb-16">
+            <p className="text-sm text-gray-500 mb-16">
               As creatives ourselves, we know that what you really want to see is
               the work we’ve actually put live. Here’s a showcase of some of our
               recent projects, across a range of sectors.
             </p>
           </motion.div>
 
-          {/* Image container with stacking effect */}
           <div
-            className="relative overflow-hidden w-full h-96" // Use overflow-hidden to hide images outside the container
+            className="relative overflow-hidden w-full h-96" 
             style={{ maxHeight: "400px" }}
           >
             {images.map((image, index) => (
               <div
                 key={index}
-                className="absolute top-0 w-full transition-transform duration-[1.5s] ease-in-out" // Adjust duration to slow down transition
+                className="absolute top-0 w-full transition-transform duration-[1.5s] ease-in-out" 
                 style={{
-                  transform: `translateY(${(index - currentIndex) * 100}%)`, // Translate each image based on the current index
+                  transform: `translateY(${(index - currentIndex) * 100}%)`, 
                 }}
               >
                 <motion.img
@@ -121,14 +111,12 @@ function Index() {
           </div>
         </div>
 
-        {/* Description beside the image with smooth animation */}
         <div className="mt-32 w-full h-auto">
           <div className="flex flex-col items-start justify-center p-2 w-auto h-auto">
-            {/* Details container with scrolling effect */}
             <div
               className="relative overflow-hidden w-full h-96"
               style={{ maxHeight: "400px" }}
-              onWheel={handleScroll} // Apply same scroll effect for the details section
+              onWheel={handleScroll} 
             >
               {details.map((detail, index) => (
                 <div
@@ -151,7 +139,7 @@ function Index() {
                         ))}
                       </div>
                       <p className="text-4xl font-semibold font-turnkey ">{detail.title}</p>
-                      <p className="mt-4">{detail.description}</p>
+                      <p className="mt-4 text-gray-500 text-sm">{detail.description}</p>
                       <p className="mt-6 w-full underline mb-10">
                         See full case study 
                         <span className="mr-2">&#x279A;</span> 
